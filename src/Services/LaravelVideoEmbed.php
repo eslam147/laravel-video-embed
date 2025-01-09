@@ -28,12 +28,13 @@ class LaravelVideoEmbed
 
       if (!empty($whitelist))
       {
-
-        if(!in_array($MediaObject->name(), $whitelist))
+        foreach($whitelist as $key => $sitename)
         {
-
+            $whitelist[$key] = strtolower($sitename);
+        }
+        if(!in_array(strtolower($MediaObject->name()), $whitelist))
+        {
           return false;
-
         }
 
       }
